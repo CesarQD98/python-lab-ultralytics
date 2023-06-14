@@ -1,5 +1,6 @@
 env/
 runs/segment/train/*
 runs/segment/val/
-runs/segment/predict/
+runs/segment/predict*/
 !runs/segment/train/weights/
+datasets/
