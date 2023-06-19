@@ -4,3 +4,4 @@ runs/segment/val/
 runs/segment/predict*/
 !runs/segment/train/weights/
 datasets/
+media/
