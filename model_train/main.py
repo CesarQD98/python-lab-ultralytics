@@ -1,5 +1,7 @@
 import argparse
 
+from ultralytics import YOLO
+
 
 def args_parser():
     parser = argparse.ArgumentParser(
@@ -7,6 +9,9 @@ def args_parser():
     )
     parser.add_argument(
         "-m", "--model", help="Path to pre-trained YOLOv8 model", required=True
+    )
+    parser.add_argument(
+        "-c", "--config", help="Path to the training config file (.yml)", required=True
     )
 
     args = parser.parse_args()
@@ -17,6 +22,11 @@ def args_parser():
 def main():
     args = args_parser()
     model_file_path = args.model
+    training_config_path = args.config
+
+    # model = YOLO(model_file_path)
+
+    print(args)
 
 
 if __name__ == "__main__":
