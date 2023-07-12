@@ -1,0 +1,9 @@
+colors:
+  - [189, 16, 224]
+  - [0, 128, 255]
+  - [139, 213, 77]
+  - [3, 211, 104]
+names: [mass, filter, rollers, splitter]
+nc: 4
+train: ./datasets_chute2/images/train
+val: ./datasets_chute2/images//val

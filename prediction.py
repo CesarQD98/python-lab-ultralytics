@@ -4,10 +4,10 @@ from ultralytics import YOLO
 import utils
 
 if __name__ == "__main__":
-    model = YOLO("yolov8n-seg.pt")
-    model = YOLO("./weights_techinn/best.pt")
+    model = YOLO("yolov8m-seg.pt")
+    model = YOLO("./runs/segment/modelo_chute4/weights/best.pt")
 
-    video_path = "./media/01010005172000413.mp4"
+    video_path = "./media/chute_4/output.mp4"
 
     cap = cv2.VideoCapture(video_path)
 
