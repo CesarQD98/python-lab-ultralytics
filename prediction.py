@@ -35,38 +35,37 @@ if __name__ == "__main__":
 
             # Guarda el resultado en variable masks
             masks = results[0].masks
-            boxes = results[0].boxes.cls
+            class_tensor = results[0].boxes.cls
 
-            print(boxes)
-            print(len(boxes))
-            print(type(boxes))
+            # Lista con las clases detectadas
+            class_list = [int(elem) for elem in class_tensor]
 
-            class_tensor = boxes.tolist()
+            # Creacion de lista
 
-            print(class_tensor)
+            for mask in masks:
+                # Genera imagen con pixels de blanco usando cv2.fillPoly
+                img = np.zeros((frame_height, frame_width, 3), np.uint8)
 
-            # print(masks.data)
-            # print(len(masks))
+                points = masks[0].xy[0].astype(int)
+                data_points = [tuple(elem) for elem in points]
 
-            # Genera imagen con pixels de blanco usando cv2.fillPoly
-            img = np.zeros((frame_height, frame_width, 3), np.uint8)
+                cv2.fillPoly(img, np.array([data_points]), (255, 255, 255))
 
-            points = masks[0].xy[0].astype(int)
+                img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
-            data_points = []
-            for elem in points:
-                data_points.append(tuple((elem)))
+                white_pixels_count = cv2.countNonZero(img_gray)
+
+            # for elem in points:
+            #     data_points.append(tuple((elem)))
 
             t1 = time.time()
             print(t1)
-            cv2.fillPoly(img, np.array([data_points]), (255, 255, 255))
             t2 = time.time()
             print(t2)
-            img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
             # Contabiliza los pixeles blancos con cv2.countNonZero
             t3 = time.time()
-            white_pixels_count = cv2.countNonZero(img_gray)
+
             t4 = time.time()
             # TODO: Calcula el procentaje de cobertura con respecto a 1920x1080
 
